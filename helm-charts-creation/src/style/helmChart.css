@@ -1,0 +1,18 @@
+.line-nums {
+    font-size: 13px;
+    line-height: 13px;
+    padding: 10px 4px;
+    font-family: monospace;
+    background: #EEE;
+    position: absolute;
+    width: 20px;
+    left: -28px;
+    bottom: 0;
+    top: 0;
+    text-align: right;
+    border: 1px solid #999;
+}
+
+.text-area {
+    background-color: #82ff7a4a !important
+}

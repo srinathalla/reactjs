@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+{{- if .Values.service.annotations }}
+  annotations:
+{{ toYaml .Values.service.annotations | indent 4 }}
+{{- end }}
+  name: {{ include "sto-web.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ include "sto-web.name" . }}
+    chart: {{ include "sto-web.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - name: http
+      port: {{ .Values.service.port }}
+      targetPort: http
+      containerPort: {{ .Values.service.containerPort }}
+      protocol: TCP
+  selector:
+    app: {{ include "sto-web.name" . }}
+    release: {{ .Release.Name }}

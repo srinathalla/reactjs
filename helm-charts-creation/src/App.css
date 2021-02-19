@@ -1,0 +1,164 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.input {
+  position: relative;
+  left: 10px;
+  top: 10px;
+  width: 80%;
+}
+
+.button {
+  position: relative;
+  left: 10px;
+  top: 30px;
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 8px 8px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  border-radius: 8px;
+  margin: 2px;
+  width: 20%;
+  height: auto;
+  text-align: center;
+  font-size: 20px;
+}
+
+.div {
+  position: absolute;
+  top: 80px;
+  right: 300px;
+  width: 50%;
+  height: 50%;
+  border: 3px solid #73ad21;
+  background-color: powderblue;
+}
+
+.row1 {
+  height: auto;
+  width: auto;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-flow: row wrap;
+  /* justify-content: center; */
+  background-color: white;
+}
+
+.news-item {
+  position: relative;
+  left: 10px;
+  width: 100%;
+  height: 50%;
+  text-align: left;
+  margin: 4px 0px;
+}
+
+
+.news-parent-container {
+  width: 100%;
+  height: 100%;
+  background-color: f6f6ef;
+}
+
+.news-header-search-container {
+  width: 100%;
+  height: 100%;
+  background-color: #ff742b;
+}
+
+.news-filter-search-container {
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  margin: 10px 0px 10px 0px;
+  font: 14px Verdana, Geneva, sans-serif;
+}
+
+.news-item-text {
+  position: relative;
+  width: 100%;
+  font: 14px Verdana, Geneva, sans-serif;
+  margin: 12px 0px 4px 0px
+}
+
+.news-item-comments-text {
+  font: 11px Verdana, Geneva, sans-serif;
+  margin: 0px 0px 0px 0px;
+}
+
+.news-filter-item {
+  margin: 0px 6px;
+}
+
+.news-header-text {
+  font: 18px Verdana, Geneva, sans-serif;
+}
+
+.data-wrapper {
+  height: 50%;
+  width: 50%;
+}
+
+.data {
+  width: 70%;
+  height: 70%;
+  position: absolute;
+  left: 0;
+  z-index: -1;
+  color: #5581b5;
+  background-color: #ff742b;
+}
+
+.helm-parent-container {
+  width: 100%;
+  height: 100%;
+  background-color: f6f6ef;
+  text-align: left;
+}

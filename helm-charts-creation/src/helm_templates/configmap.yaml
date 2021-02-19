@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "sto-web.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ include "sto-web.name" . }}
+    chart: {{ include "sto-web.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+  log-level: {{ .Values.config.logLevel  }}
+  log-destination: {{  .Values.config.logDestination  }}
+  sql-server: {{ .Values.config.sqlServer | quote }}
+  sql-use-kerberos: {{ .Values.config.sqlUseKerberos | quote  }}
+  sql-integrated-security: {{ .Values.config.sqlIntegratedSecurity | quote  }}
+  sql-query-timeout: {{ .Values.config.sqlQueryTimeout | quote  }}
+  sql-max-pool: {{ .Values.config.sqlMaxPool | quote  }}
+  sql-auth: {{ .Values.config.sqlAuth | quote }}
+  server-connection-timeout: {{ .Values.config.server.connectionTimeout | quote }}
+  server-jetty-acceptors: {{ .Values.config.server.jetty.acceptors | quote }}
+  server-jetty-selectors: {{ .Values.config.server.jetty.selectors | quote }}
+  stoweb-encoderid: {{ .Values.config.stowebEncoderId | quote }}
+  enable-diskspace-health: {{ .Values.config.enableDiskSpaceHealth | quote }}
+  enable-eloquasitesdb-health: {{ .Values.config.enableEloquaSitesdbHealth | quote }}
+  lumberjack-kafka-server: {{ .Values.config.lumberjackKafkaServer | quote }}

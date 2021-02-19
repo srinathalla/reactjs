@@ -1,0 +1,101 @@
+# Default values for stoservice.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 3
+
+updateType: RollingUpdate
+maxUnavailable: 1
+maxSurge: 1
+
+dnsConfig:
+  searches:
+    - elqrd.local
+
+image:
+  repository: docker02-den3:5000/sto_web
+  tag: stable
+  pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+
+config:
+  logLevel: info
+  logDestination: console
+  javaOptions: " -XX:InitialRAMPercentage=60 -XX:MaxRAMPercentage=90 "
+  sqlServer: q03p01sdb001
+  sqlUseKerberos: true 
+  sqlIntegratedSecurity: true
+  sqlQueryTimeout: 300
+  sqlMaxPool: 10
+  sqlAuth: true
+  stowebEncoderId: noop
+  enableDiskSpaceHealth: true
+  enableEloquaSitesdbHealth: true
+  lumberjackKafkaServer: localhost:9092
+  server:
+    connectionTimeout: 30000
+    jetty:
+        acceptors: -1
+        selectors: -1
+      
+secrets:
+  sqlUser: sqlUser
+  sqlPassword: sqlPassword
+  sslPassword: sslPassword
+  stowebUser: user
+  stowebPassword: password
+
+service:
+  type: NodePort
+  port: 8080
+  containerPort: 8080
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "8080"
+    prometheus.io/path: "/manage/prometheus"
+
+    #traefik.ingress.kubernetes.io/affinity: "true"
+    #traefik.ingress.kubernetes.io/buffering: 'retryexpression: IsNetworkError() &&
+    #  Attempts() <= 5'
+    traefik.ingress.kubernetes.io/load-balancer-method: drr
+    traefik.ingress.kubernetes.io/max-conn-amount: "30000"
+    traefik.ingress.kubernetes.io/max-conn-extractor-func: client.ip
+    traefik.ingress.kubernetes.io/responseforwarding-flushinterval: 100ms
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: traefik-elqcore
+    # kubernetes.io/tls-acme: "true"
+  path: /
+  hosts:
+    - stoweb.q01p03.elqrd.local
+  tls:
+    - secretName: traefik-elqcore-cert
+      hosts:
+        - stoweb.q01p03.elqrd.local
+
+tls:
+  secretName: traefik-elqcore-cert
+  cert: ""
+  key: ""
+
+resources:
+  limits:
+    cpu: 2
+    memory: 3Gi
+  requests:
+    cpu: 200m
+    memory: 1Gi
+
+
+tolerations: []
+
+affinity: {}
+
+nodeSelector:
+  owner: elqcore
+
+podId: q01p03
